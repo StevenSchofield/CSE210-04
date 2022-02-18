@@ -17,6 +17,7 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
+        self.score = 0
         
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -42,16 +43,16 @@ class Director:
         player.set_velocity(velocity)        
 
     def _do_updates(self, cast):
-        """Updates the player's position and resolves any collisions with artifacts.
+        """Updates the player and all falling object's positions and handles collisions
         
         Args:
             cast (Cast): The cast of actors.
         """
-        banner = cast.get_first_actor("banners")
+        scoreBanner = cast.get_first_actor("banners")
         player = cast.get_first_actor("players")
-        artifacts = cast.get_actors("artifacts")
+        gems = cast.get_actors("gems")
 
-        banner.set_text("")
+        """
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         player.move_next(max_x, max_y)
@@ -59,7 +60,13 @@ class Director:
         for artifact in artifacts:
             if player.get_position().equals(artifact.get_position()):
                 message = artifact.get_message()
-                banner.set_text(message)    
+                scoreBanner.set_text(message)"""
+        
+        for gem in gems:
+            if player.get_position().equals(gem.get_position()):
+                self.score += gem.getScore()
+                scoreBanner.set_text(f"Score: {self.score}")
+            
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.

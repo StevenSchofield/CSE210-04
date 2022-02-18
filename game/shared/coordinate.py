@@ -1,4 +1,4 @@
-class Point:
+class Coordinate:
     """A distance from a relative origin (0, 0).
 
     The responsibility of Point is to hold and provide information about itself. Point has a few 
@@ -30,7 +30,7 @@ class Point:
         """
         x = self._x + other.get_x()
         y = self._y + other.get_y()
-        return Point(x, y)
+        return Coordinate(x, y)
 
     def equals(self, other):
         """Whether or not this Point is equal to the given one.
@@ -69,4 +69,4 @@ class Point:
         Returns:
             Point: A new Point that is scaled.
         """
-        return Point(self._x * factor, self._y * factor)
+        return Coordinate(self._x * factor, self._y * factor)

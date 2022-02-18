@@ -1,5 +1,5 @@
 import pyray
-from game.shared.point import Point
+from game.shared.coordinate import Coordinate
 
 
 class KeyboardService:
@@ -41,7 +41,7 @@ class KeyboardService:
         if pyray.is_key_down(pyray.KEY_DOWN):
             dy = 1
 
-        direction = Point(dx, dy)
+        direction = Coordinate(dx, dy)
         direction = direction.scale(self._cell_size)
         
         return direction

@@ -1,5 +1,5 @@
 from game.shared.color import Color
-from game.shared.point import Point
+from game.shared.coordinate import Coordinate
 
 
 class Actor:
@@ -21,8 +21,8 @@ class Actor:
         self._text = ""
         self._font_size = 15
         self._color = Color(255, 255, 255)
-        self._position = Point(0, 0)
-        self._velocity = Point(0, 0)
+        self._position = Coordinate(0, 0)
+        self._velocity = Coordinate(0, 0)
 
     def get_color(self):
         """Gets the actor's color as a tuple of three ints (r, g, b).
@@ -74,7 +74,7 @@ class Actor:
         """
         x = (self._position.get_x() + self._velocity.get_x()) % max_x
         y = (self._position.get_y() + self._velocity.get_y()) % max_y
-        self._position = Point(x, y)
+        self._position = Coordinate(x, y)
 
     def set_color(self, color):
         """Updates the color to the given one.

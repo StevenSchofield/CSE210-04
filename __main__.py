@@ -6,6 +6,7 @@ from game.casting.artifact import Artifact
 from game.casting.cast import Cast
 
 from game.directing.director import Director
+from game.directing.spawner import Spawner
 
 from game.services.keyboard_service import KeyboardService
 from game.services.video_service import VideoService
@@ -25,6 +26,7 @@ CAPTION = "Greed"
 DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
 WHITE = Color(255, 255, 255)
 DEFAULT_ARTIFACTS = 40
+SPAWN_RATE = 100
 
 
 def main():
@@ -40,7 +42,6 @@ def main():
     score.set_position(Coordinate(CELL_SIZE, 0))
     cast.add_actor("banners", score)
     
-    # create the player
     x = int(MAX_X / 2)
     y = int(MAX_Y / 2)
     position = Coordinate(x, y)
@@ -51,7 +52,7 @@ def main():
     robot.set_color(WHITE)
     robot.set_position(position)
     cast.add_actor("robots", robot)
-    
+
     """
     # create the artifacts
     with open(DATA_PATH) as file:
@@ -84,6 +85,8 @@ def main():
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
     director = Director(keyboard_service, video_service)
+    spawner = Spawner(COLS, ROWS, SPAWN_RATE)
+    director = Director(keyboard_service, video_service, spawner)
     director.start_game(cast)
 
 

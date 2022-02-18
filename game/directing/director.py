@@ -6,9 +6,10 @@ class Director:
     Attributes:
         _keyboard_service (KeyboardService): For getting directional input.
         _video_service (VideoService): For providing video output.
+        _spawner (Spawner): For spawning objects.
     """
 
-    def __init__(self, keyboard_service, video_service):
+    def __init__(self, keyboard_service, video_service, spawner):
         """Constructs a new Director using the specified keyboard and video services.
         
         Args:
@@ -17,6 +18,7 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
+        self._spawner = spawner
         self.score = 0
         
     def start_game(self, cast):
@@ -33,14 +35,11 @@ class Director:
         self._video_service.close_window()
 
     def _get_inputs(self, cast):
-        """Gets directional input from the keyboard and applies it to the player.
         
         Args:
             cast (Cast): The cast of actors.
         """
-        player = cast.get_first_actor("players")
         velocity = self._keyboard_service.get_direction()
-        player.set_velocity(velocity)        
 
     def _do_updates(self, cast):
         """Updates the player and all falling object's positions and handles collisions
@@ -49,17 +48,14 @@ class Director:
             cast (Cast): The cast of actors.
         """
         scoreBanner = cast.get_first_actor("banners")
-        player = cast.get_first_actor("players")
         gems = cast.get_actors("gems")
         rocks = cast.get_actor("rocks")
 
         """
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
-        player.move_next(max_x, max_y)
         
         for artifact in artifacts:
-            if player.get_position().equals(artifact.get_position()):
                 message = artifact.get_message()
                 scoreBanner.set_text(message)"""
         

@@ -51,6 +51,7 @@ class Director:
         scoreBanner = cast.get_first_actor("banners")
         player = cast.get_first_actor("players")
         gems = cast.get_actors("gems")
+        rocks = cast.get_actor("rocks")
 
         """
         max_x = self._video_service.get_width()
@@ -62,10 +63,15 @@ class Director:
                 message = artifact.get_message()
                 scoreBanner.set_text(message)"""
         
+        for rock in rocks:
+            if player.get_position().equals(rock.get_position()):
+                cast.remove_actor("rocks", rock)
+
         for gem in gems:
             if player.get_position().equals(gem.get_position()):
                 self.score += gem.getScore()
                 scoreBanner.set_text(f"Score: {self.score}")
+                cast.remove_actor("gems", gem)
             
         
     def _do_outputs(self, cast):

@@ -40,7 +40,7 @@ def main():
     score.set_position(Coordinate(CELL_SIZE, 0))
     cast.add_actor("banners", score)
     
-    # create the robot
+    # create the player
     x = int(MAX_X / 2)
     y = int(MAX_Y / 2)
     position = Coordinate(x, y)

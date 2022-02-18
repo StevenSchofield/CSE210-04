@@ -64,7 +64,7 @@ class Director:
         
         for gem in gems:
             if player.get_position().equals(gem.get_position()):
-                self.score
+                self.score += gem.getScore()
                 scoreBanner.set_text(f"Score: {self.score}")
             
         

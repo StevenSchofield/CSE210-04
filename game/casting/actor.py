@@ -84,11 +84,11 @@ class Actor:
         """
         self._color = color
 
-    def set_position(self, position):
+    def set_position(self, position:Coordinate):
         """Updates the position to the given one.
         
         Args:
-            position (Point): The given position.
+            position (Coordinate): The given position.
         """
         self._position = position
     

@@ -37,13 +37,13 @@ def main():
     banner.set_text("")
     banner.set_font_size(FONT_SIZE)
     banner.set_color(WHITE)
-    banner.set_position(Point(CELL_SIZE, 0))
+    banner.set_position(Coordinate(CELL_SIZE, 0))
     cast.add_actor("banners", banner)
     
     # create the robot
     x = int(MAX_X / 2)
     y = int(MAX_Y / 2)
-    position = Point(x, y)
+    position = Coordinate(x, y)
 
     robot = Actor()
     robot.set_text("#")
@@ -63,7 +63,7 @@ def main():
 
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
-        position = Point(x, y)
+        position = Coordinate(x, y)
         position = position.scale(CELL_SIZE)
 
         r = random.randint(0, 255)

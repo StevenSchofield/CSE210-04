@@ -33,14 +33,14 @@ class Director:
         self._video_service.close_window()
 
     def _get_inputs(self, cast):
-        """Gets directional input from the keyboard and applies it to the robot.
+        """Gets directional input from the keyboard and applies it to the player.
         
         Args:
             cast (Cast): The cast of actors.
         """
-        robot = cast.get_first_actor("robots")
+        player = cast.get_first_actor("players")
         velocity = self._keyboard_service.get_direction()
-        robot.set_velocity(velocity)        
+        player.set_velocity(velocity)        
 
     def _do_updates(self, cast):
         """Updates the player and all falling object's positions and handles collisions
@@ -49,22 +49,22 @@ class Director:
             cast (Cast): The cast of actors.
         """
         scoreBanner = cast.get_first_actor("banners")
-        player = cast.get_first_actor("robots")
+        player = cast.get_first_actor("players")
         gems = cast.get_actors("gems")
 
         """
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
-        robot.move_next(max_x, max_y)
+        player.move_next(max_x, max_y)
         
         for artifact in artifacts:
-            if robot.get_position().equals(artifact.get_position()):
+            if player.get_position().equals(artifact.get_position()):
                 message = artifact.get_message()
                 scoreBanner.set_text(message)"""
         
         for gem in gems:
             if player.get_position().equals(gem.get_position()):
-                self.score
+                self.score += gem.getScore()
                 scoreBanner.set_text(f"Score: {self.score}")
             
         

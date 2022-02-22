@@ -35,7 +35,7 @@ class Director:
         self._video_service.close_window()
 
     def _get_inputs(self, cast):
-        
+        """   
         Args:
             cast (Cast): The cast of actors.
         """
@@ -62,11 +62,15 @@ class Director:
         for rock in rocks:
             if player.get_position().equals(rock.get_position()):
                 cast.remove_actor("rocks", rock)
+            if rock.get_position().get_y() > self._video_service.get_height():
+                cast.remove_actor("rocks", rock)
 
         for gem in gems:
             if player.get_position().equals(gem.get_position()):
                 self.score += gem.getScore()
                 scoreBanner.set_text(f"Score: {self.score}")
+                cast.remove_actor("gems", gem)
+            if gem.get_position().get_y() > self._video_service.get_height():
                 cast.remove_actor("gems", gem)
             
         

@@ -1,5 +1,5 @@
 from game.casting.gems import Gems
-from game.casting.rock import Rocks
+from game.casting.rocks import Rocks
 from game.shared.coordinate import Coordinate
 import random
 
@@ -10,7 +10,7 @@ class Spawner:
         _spawn_rate (int): controls how many objects are spawned.
     """
 
-    def __init__(self, columns, rows, cell_size, spawn_rate):
+    def __init__(self, columns, rows, cell_size, spawn_rate=100):
         """Constructs a new Spawner with the specified spawn_rate.
         """
         self._columns = columns
@@ -24,15 +24,16 @@ class Spawner:
         Args:
             cast (Cast): The cast of actors.
         """
-        spawn = random.randint(0,100)
+        spawn = random.randint(0,self._spawn_rate)
         x = random.randint(1, self._columns - 1)
         y = random.randint(1, self._rows - 1)
         position = Coordinate(x, y)
         position = position.scale(self._cell_size)
         if spawn > 75:
             gem = Gems()
+            gem.set_position(position)
             cast.add_actor("gem", gem)
-            cast.set
         elif spawn > 50:
             rock = Rocks()
+            rock.set_position(position)
             cast.add_actor("rock", rock)

@@ -53,6 +53,7 @@ class Director:
         scoreBanner = cast.get_first_actor("banners")
         gems = cast.get_actors("gems")
         rocks = cast.get_actors("rocks")
+        player = cast.get_first_actor("player")
 
         """
         max_x = self._video_service.get_width()
@@ -64,6 +65,7 @@ class Director:
         
         for rock in rocks:
             if player.get_position().equals(rock.get_position()):
+                player.change_lives(1)
                 cast.remove_actor("rocks", rock)
             if rock.get_position().get_y() > self._video_service.get_height():
                 cast.remove_actor("rocks", rock)

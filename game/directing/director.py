@@ -1,3 +1,6 @@
+from game.casting.cast import Cast
+
+
 class Director:
     """A person who directs the game. 
     
@@ -34,14 +37,14 @@ class Director:
             self._do_outputs(cast)
         self._video_service.close_window()
 
-    def _get_inputs(self, cast):
+    def _get_inputs(self, cast:Cast):
         """   
         Args:
             cast (Cast): The cast of actors.
         """
         velocity = self._keyboard_service.get_direction()
 
-    def _do_updates(self, cast):
+    def _do_updates(self, cast:Cast):
         """Updates the player and all falling object's positions and handles collisions
         
         Args:
@@ -49,7 +52,7 @@ class Director:
         """
         scoreBanner = cast.get_first_actor("banners")
         gems = cast.get_actors("gems")
-        rocks = cast.get_actor("rocks")
+        rocks = cast.get_actors("rocks")
 
         """
         max_x = self._video_service.get_width()
@@ -74,7 +77,7 @@ class Director:
                 cast.remove_actor("gems", gem)
             
         
-    def _do_outputs(self, cast):
+    def _do_outputs(self, cast:Cast):
         """Draws the actors on the screen.
         
         Args:

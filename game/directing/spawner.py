@@ -1,3 +1,4 @@
+from game.casting.cast import Cast
 from game.casting.gems import Gems
 from game.casting.rocks import Rocks
 from game.shared.coordinate import Coordinate
@@ -18,7 +19,7 @@ class Spawner:
         self._cell_size = cell_size
         self._spawn_rate = spawn_rate
 
-    def _spawn_object(self, cast):
+    def _spawn_object(self, cast:Cast):
         """Adds random objects to the cast.
         
         Args:
@@ -26,7 +27,7 @@ class Spawner:
         """
         spawn = random.randint(0,self._spawn_rate)
         x = random.randint(1, self._columns - 1)
-        y = random.randint(1, self._rows - 1)
+        y = 1
         position = Coordinate(x, y)
         position = position.scale(self._cell_size)
         if spawn > 75:

@@ -2,7 +2,13 @@ from game.casting.cast import Cast
 from game.casting.gems import Gems
 from game.casting.rocks import Rocks
 from game.shared.coordinate import Coordinate
+from game.shared.color import Color
 import random
+
+COLORS = [Color(0, 255, 0),
+    Color(0, 0, 255),
+    Color(255, 0, 0),
+    Color(255, 255, 0)]
 
 class Spawner:
     """An object that spawns actors.
@@ -32,6 +38,7 @@ class Spawner:
         position = position.scale(self._cell_size)
         if spawn > 75:
             gem = Gems()
+            gem.set_color(COLORS[random.randint(0, len(COLORS)-1)])
             gem.set_position(position)
             cast.add_actor("gem", gem)
         elif spawn > 50:

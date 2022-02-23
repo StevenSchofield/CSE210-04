@@ -68,7 +68,7 @@ def main():
     start.set_text("Press ENTER to start")
     start.set_color(WHITE)
     start.set_font_size(FONT_SIZE)
-    start.set_position(Coordinate(round(MAX_X/2), round(MAX_Y/2)))
+    start.set_position(Coordinate(round(MAX_X/3), round(MAX_Y/2)))
     startScreenCast.add_actor("title screen", start)
 
     """

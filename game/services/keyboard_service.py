@@ -45,3 +45,8 @@ class KeyboardService:
         direction = direction.scale(self._cell_size)
         
         return direction
+    
+    def pressed_enter(self) -> bool:
+        """Returns true if the enter key is pressed
+        """
+        return pyray.is_key_down(pyray.KEY_ENTER)

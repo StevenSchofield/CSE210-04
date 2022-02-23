@@ -23,8 +23,10 @@ class Director:
         self._video_service = video_service
         self._spawner = spawner
         self.score = 0
+
+        self._screen = 1
         
-    def start_game(self, cast):
+    def start_game(self, gameCast, startScreenCast):
         """Starts the game using the given cast. Runs the main game loop.
 
         Args:
@@ -32,9 +34,14 @@ class Director:
         """
         self._video_service.open_window()
         while self._video_service.is_window_open():
-            self._get_inputs(cast)
-            self._do_updates(cast)
-            self._do_outputs(cast)
+            if self._screen == 1:
+                self._do_outputs(startScreenCast)
+                if self._keyboard_service.pressed_enter():
+                    self._screen += 1
+            else: 
+                self._get_inputs(gameCast)
+                self._do_updates(gameCast)
+                self._do_outputs(gameCast)
         self._video_service.close_window()
 
     def _get_inputs(self, cast:Cast):

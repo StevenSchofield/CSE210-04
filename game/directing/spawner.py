@@ -37,11 +37,11 @@ class Spawner:
         position = Coordinate(x, y)
         position = position.scale(self._cell_size)
         if spawn > 75:
+            rock = Rocks()
+            rock.set_position(position)
+            cast.add_actor("rock", rock)
+        elif spawn > 50:
             gem = Gems()
             gem.set_color(COLORS[random.randint(0, len(COLORS)-1)])
             gem.set_position(position)
             cast.add_actor("gem", gem)
-        elif spawn > 50:
-            rock = Rocks()
-            rock.set_position(position)
-            cast.add_actor("rock", rock)

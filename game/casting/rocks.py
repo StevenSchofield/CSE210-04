@@ -1,5 +1,4 @@
 from pickle import FALSE
-from game.casting.actor import Actor
 from game.casting.fallingObject import FallingObject
 class Rocks(FallingObject):
     def __init__(self):

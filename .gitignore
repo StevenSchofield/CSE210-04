@@ -22,3 +22,6 @@ game/directing/__pycache__/spawner.cpython-310.pyc
 __pycache__/
 game/directing/__pycache__/director.cpython-310.pyc
 game/services/__pycache__/keyboard_service.cpython-310.pyc
+game/casting/__pycache__/gems.cpython-310.pyc
+game/casting/__pycache__/rocks.cpython-310.pyc
+game/directing/__pycache__/director.cpython-310.pyc

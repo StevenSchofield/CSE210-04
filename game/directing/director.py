@@ -37,11 +37,13 @@ class Director:
             if self._screen == 1:
                 self._do_outputs(startScreenCast)
                 if self._keyboard_service.pressed_enter():
-                    self._screen += 1
-            else: 
+                    self._screen = 2
+            elif self._screen == 2: 
                 self._get_inputs(gameCast)
                 self._do_updates(gameCast)
                 self._do_outputs(gameCast)
+            else:
+                self._video_service.close_window()
         self._video_service.close_window()
 
     def _get_inputs(self, cast:Cast):

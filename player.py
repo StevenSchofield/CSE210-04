@@ -1,8 +1,21 @@
-from actor.py import Actor
+from game.casting.actor import Actor
+from game.casting.cast import Cast
 
-player = Actor()
-    player.set_text("#")
-    player.set_font_size(FONT_SIZE)
-    player.set_color(WHITE)
-    player.set_position(position)
-    cast.add_actor("robots", player)
+
+# cast = Cast()
+# player = Actor()
+# player.set_text("#")
+# cast.add_actor("robots", player)
+# change = 0
+
+class player(Actor):
+
+    def __init__(self):
+        super().__init__()
+        self._lives = 3
+
+    def decrease_lives(self, decrease = 1):
+
+        self.lives -= decrease
+        return self._lives
+

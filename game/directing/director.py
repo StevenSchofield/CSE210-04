@@ -52,11 +52,10 @@ class Director:
         player = cast.get_first_actor("players")
         gems = cast.get_actors("gems")
 
-        """
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         player.move_next(max_x, max_y)
-        
+        """
         for artifact in artifacts:
             if player.get_position().equals(artifact.get_position()):
                 message = artifact.get_message()

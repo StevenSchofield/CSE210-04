@@ -19,6 +19,7 @@ MAX_X = 900
 MAX_Y = 600
 CELL_SIZE = 15
 FONT_SIZE = 15
+HEADER_FONT_SIZE = 60
 COLS = 60
 ROWS = 40
 CAPTION = "Greed"
@@ -51,6 +52,24 @@ def main():
     player.set_color(WHITE)
     player.set_position(position)
     cast.add_actor("player", player)
+
+
+    ## setup the start screen
+    startScreenCast = Cast()
+
+    title = Actor()
+    title.set_text("GREED")
+    title.set_color(WHITE)
+    title.set_font_size(HEADER_FONT_SIZE)
+    title.set_position(Coordinate(round(MAX_X/4), round(MAX_Y/4)))
+    startScreenCast.add_actor("title screen", title)
+
+    start = Actor()
+    start.set_text("Press ENTER to start")
+    start.set_color(WHITE)
+    start.set_font_size(FONT_SIZE)
+    start.set_position(Coordinate(round(MAX_X/2), round(MAX_Y/2)))
+    startScreenCast.add_actor("title screen", start)
 
     """
     # create the artifacts
@@ -85,7 +104,7 @@ def main():
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
     spawner = Spawner(COLS, ROWS, SPAWN_RATE)
     director = Director(keyboard_service, video_service, spawner)
-    director.start_game(cast)
+    director.start_game(cast, startScreenCast)
 
 
 if __name__ == "__main__":

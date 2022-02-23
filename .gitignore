@@ -17,3 +17,5 @@ game/directing/__pycache__/director.cpython-310.pyc
 game/directing/__pycache__/spawner.cpython-310.pyc
 game/services/__pycache__/keyboard_service.cpython-310.pyc
 game/shared/__pycache__/coordinate.cpython-310.pyc
+game/directing/__pycache__/director.cpython-310.pyc
+game/directing/__pycache__/spawner.cpython-310.pyc

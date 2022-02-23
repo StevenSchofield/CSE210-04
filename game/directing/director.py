@@ -78,6 +78,7 @@ class Director:
             if gem.get_position().get_y() > self._video_service.get_height():
                 cast.remove_actor("gems", gem)
             
+        self._spawner.spawn_object(cast)
         
     def _do_outputs(self, cast:Cast):
         """Draws the actors on the screen.

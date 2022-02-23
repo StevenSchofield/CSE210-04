@@ -25,7 +25,7 @@ class Spawner:
         self._cell_size = cell_size
         self._spawn_rate = spawn_rate
 
-    def _spawn_object(self, cast:Cast):
+    def spawn_object(self, cast:Cast):
         """Adds random objects to the cast.
         
         Args:

@@ -42,7 +42,9 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
+        player = cast.get_first_actor("player")
         velocity = self._keyboard_service.get_direction()
+        player.set_velocity(velocity)
 
     def _do_updates(self, cast:Cast):
         """Updates the player and all falling object's positions and handles collisions

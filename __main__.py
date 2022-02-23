@@ -40,16 +40,17 @@ def main():
     score.set_position(Coordinate(CELL_SIZE, 0))
     cast.add_actor("banners", score)
     
+    
     x = int(MAX_X / 2)
-    y = int(MAX_Y / 2)
+    y = int(MAX_Y - 2)
     position = Coordinate(x, y)
 
-    robot = Actor()
-    robot.set_text("#")
-    robot.set_font_size(FONT_SIZE)
-    robot.set_color(WHITE)
-    robot.set_position(position)
-    cast.add_actor("robots", robot)
+    player = Actor()
+    player.set_text("#")
+    player.set_font_size(FONT_SIZE)
+    player.set_color(WHITE)
+    player.set_position(position)
+    cast.add_actor("player", player)
 
     """
     # create the artifacts

@@ -16,6 +16,6 @@ class FallingObject(Actor):
         """
         x = (self._position.get_x() + self._velocity.get_x()) % max_x
         y = (self._position.get_y() + self._velocity.get_y()) % max_y
-        self._position = self.set_position(x,y)
+        self._position = Coordinate(x, y)
     
     

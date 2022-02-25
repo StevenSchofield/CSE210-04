@@ -8,7 +8,7 @@ from game.casting.cast import Cast
 # cast.add_actor("robots", player)
 # change = 0
 
-class player(Actor):
+class Player(Actor):
 
     def __init__(self):
         super().__init__()

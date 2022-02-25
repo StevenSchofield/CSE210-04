@@ -74,10 +74,11 @@ class Director:
                 message = artifact.get_message()
                 scoreBanner.set_text(message)"""
         
+        # Rock and gem movement/collision
         for rock in rocks:
             rock.falling(max_x, max_y)
             if player.get_position().equals(rock.get_position()):
-                player.change_lives(1)
+                player.decrease_lives()
                 cast.remove_actor("rocks", rock)
             if rock.get_position().get_y() > self._video_service.get_height():
                 cast.remove_actor("rocks", rock)

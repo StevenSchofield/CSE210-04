@@ -2,6 +2,7 @@ import os
 import random
 
 from game.casting.actor import Actor
+from game.casting.player import Player
 from game.casting.cast import Cast
 
 from game.directing.director import Director
@@ -46,7 +47,7 @@ def main():
     y = int(MAX_Y - 2)
     position = Coordinate(x, y)
 
-    player = Actor()
+    player = Player()
     player.set_text("#")
     player.set_font_size(FONT_SIZE)
     player.set_color(WHITE)

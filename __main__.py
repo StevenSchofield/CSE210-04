@@ -26,7 +26,7 @@ ROWS = 40
 CAPTION = "Greed"
 WHITE = Color(255, 255, 255)
 DEFAULT_ARTIFACTS = 40
-SPAWN_RATE = 100
+SPAWN_RATE = 150
 
 
 def main():

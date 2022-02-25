@@ -24,7 +24,7 @@ class Director:
         self._spawner = spawner
         self.score = 0
 
-        self._screen = 1
+        self._screen = 2
         
     def start_game(self, gameCast, startScreenCast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -74,19 +74,18 @@ class Director:
                 message = artifact.get_message()
                 scoreBanner.set_text(message)"""
         
+        # Rock and gem movement/collision
         for rock in rocks:
+            rock.falling(max_x, max_y)
             if player.get_position().equals(rock.get_position()):
-                player.change_lives(1)
-                cast.remove_actor("rocks", rock)
-            if rock.get_position().get_y() > self._video_service.get_height():
+                player.decrease_lives()
                 cast.remove_actor("rocks", rock)
 
         for gem in gems:
+            gem.falling(max_x, max_y)
             if player.get_position().equals(gem.get_position()):
                 self.score += gem.getScore()
                 scoreBanner.set_text(f"Score: {self.score}")
-                cast.remove_actor("gems", gem)
-            if gem.get_position().get_y() > self._video_service.get_height():
                 cast.remove_actor("gems", gem)
             
         self._spawner.spawn_object(cast)

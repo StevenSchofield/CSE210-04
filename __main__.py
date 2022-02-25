@@ -2,6 +2,7 @@ import os
 import random
 
 from game.casting.actor import Actor
+from game.casting.player import Player
 from game.casting.cast import Cast
 
 from game.directing.director import Director
@@ -25,7 +26,7 @@ ROWS = 40
 CAPTION = "Greed"
 WHITE = Color(255, 255, 255)
 DEFAULT_ARTIFACTS = 40
-SPAWN_RATE = 100
+SPAWN_RATE = 150
 
 
 def main():
@@ -46,7 +47,7 @@ def main():
     y = int(MAX_Y - 2)
     position = Coordinate(x, y)
 
-    player = Actor()
+    player = Player()
     player.set_text("#")
     player.set_font_size(FONT_SIZE)
     player.set_color(WHITE)
@@ -102,7 +103,7 @@ def main():
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
-    spawner = Spawner(COLS, ROWS, SPAWN_RATE)
+    spawner = Spawner(COLS, ROWS, CELL_SIZE, SPAWN_RATE)
     director = Director(keyboard_service, video_service, spawner)
     director.start_game(cast, startScreenCast)
 

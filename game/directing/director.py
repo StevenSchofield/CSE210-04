@@ -80,16 +80,12 @@ class Director:
             if player.get_position().equals(rock.get_position()):
                 player.decrease_lives()
                 cast.remove_actor("rocks", rock)
-            if rock.get_position().get_y() > self._video_service.get_height():
-                cast.remove_actor("rocks", rock)
 
         for gem in gems:
-            rock.falling(max_x, max_y)
+            gem.falling(max_x, max_y)
             if player.get_position().equals(gem.get_position()):
                 self.score += gem.getScore()
                 scoreBanner.set_text(f"Score: {self.score}")
-                cast.remove_actor("gems", gem)
-            if gem.get_position().get_y() > self._video_service.get_height():
                 cast.remove_actor("gems", gem)
             
         self._spawner.spawn_object(cast)

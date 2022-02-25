@@ -25,13 +25,13 @@ class Director:
         self._spawner = spawner
         self.score = 0
 
-        self._screen = 2
+        self._screen = 1
         
-    def start_game(self, gameCast, startScreenCast):
+    def start_game(self, gameCast:Cast, startScreenCast:Cast, endScreenCast:Cast):
         """Starts the game using the given cast. Runs the main game loop.
 
         Args:
-            cast (Cast): The cast of actors.
+            gameCast (Cast): The cast of actors.
         """
         self._video_service.open_window()
         while self._video_service.is_window_open():
@@ -43,6 +43,17 @@ class Director:
                 self._get_inputs(gameCast)
                 self._do_updates(gameCast)
                 self._do_outputs(gameCast)
+            elif self._screen == 3:
+                endScreenCast.get_first_actor("loose screen score").set_text(f"Your Score: {self.score}")
+                self._do_outputs(endScreenCast)
+                if self._keyboard_service.pressed_enter():
+                    gameCast.get_first_actor("player").decrease_lives(-3)
+                    self.score = 0
+                    for rock in gameCast.get_actors("rocks"):
+                        gameCast.remove_actor("rocks", rock)
+                    for gem in gameCast.get_actors("gems"):
+                        gameCast.remove_actor("gems", gem)
+                    self._screen = 2
             else:
                 self._video_service.close_window()
         self._video_service.close_window()
@@ -72,13 +83,15 @@ class Director:
         max_y = self._video_service.get_height()
         player.set_velocity(Coordinate(player.get_velocity().get_x(), player.get_velocity().get_y()*3))
         player.move_next(max_x, max_y)
-        
+
         # Rock and gem movement/collision
         for rock in rocks:
             rock.falling(max_x, max_y)
             if player.get_position().collide(rock.get_position()):
-                livesBanner.set_text(f"Lives: {player.decrease_lives()}")
+                player.decrease_lives()
                 cast.remove_actor("rocks", rock)
+                if player.decrease_lives(0) <= 0:
+                    self._screen = 3
 
         for gem in gems:
             gem.falling(max_x, max_y)
@@ -88,6 +101,8 @@ class Director:
                 cast.remove_actor("gems", gem)
             
         self._spawner.spawn_object(cast)
+
+        livesBanner.set_text(f"Lives: {player.decrease_lives(0)}")
         
     def _do_outputs(self, cast:Cast):
         """Draws the actors on the screen.

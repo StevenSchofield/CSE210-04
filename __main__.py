@@ -63,7 +63,6 @@ def main():
     cast.add_actor("player", player)
 
 
-
     ## setup the start screen
     startScreenCast = Cast()
 
@@ -80,41 +79,37 @@ def main():
     start.set_font_size(FONT_SIZE)
     start.set_position(Coordinate(round(MAX_X/3), round(MAX_Y/2)))
     startScreenCast.add_actor("title screen", start)
-
-    """
-    # create the artifacts
-    with open(DATA_PATH) as file:
-        data = file.read()
-        messages = data.splitlines()
-
-    for n in range(DEFAULT_ARTIFACTS):
-        text = chr(random.randint(33, 126))
-        message = messages[n]
-
-        x = random.randint(1, COLS - 1)
-        y = random.randint(1, ROWS - 1)
-        position = Coordinate(x, y)
-        position = position.scale(CELL_SIZE)
-
-        r = random.randint(0, 255)
-        g = random.randint(0, 255)
-        b = random.randint(0, 255)
-        color = Color(r, g, b)
-        
-        artifact = Artifact()
-        artifact.set_text(text)
-        artifact.set_font_size(FONT_SIZE)
-        artifact.set_color(color)
-        artifact.set_position(position)
-        artifact.set_message(message)
-        cast.add_actor("artifacts", artifact)"""
     
+    ## setup the end game screen
+    endScreenCast = Cast()
+
+    youLoose = Actor()
+    youLoose.set_text("You died!")
+    youLoose.set_color(WHITE)
+    youLoose.set_font_size(HEADER_FONT_SIZE)
+    youLoose.set_position(Coordinate(round(MAX_X/4), round(MAX_Y/4)))
+    endScreenCast.add_actor("loose screen", youLoose)
+
+    scoreDisplay = Actor()
+    scoreDisplay.set_text("Your score: ")
+    scoreDisplay.set_color(WHITE)
+    scoreDisplay.set_font_size(FONT_SIZE)
+    scoreDisplay.set_position(Coordinate(round(MAX_X/3), round(MAX_Y/2)-CELL_SIZE*2))
+    endScreenCast.add_actor("loose screen score", scoreDisplay)
+
+    tryAgain = Actor()
+    tryAgain.set_text("Press ENTER to try again")
+    tryAgain.set_color(WHITE)
+    tryAgain.set_font_size(FONT_SIZE)
+    tryAgain.set_position(Coordinate(round(MAX_X/3), round(MAX_Y/2)))
+    endScreenCast.add_actor("loose screen", tryAgain)
+
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
     spawner = Spawner(COLS, ROWS, CELL_SIZE, SPAWN_RATE)
     director = Director(keyboard_service, video_service, spawner)
-    director.start_game(cast, startScreenCast)
+    director.start_game(cast, startScreenCast, endScreenCast)
 
 
 if __name__ == "__main__":

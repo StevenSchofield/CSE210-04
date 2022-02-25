@@ -41,10 +41,18 @@ def main():
     score.set_color(WHITE)
     score.set_position(Coordinate(CELL_SIZE, 0))
     cast.add_actor("banners", score)
+
+    # create the lives banner
+    lives = Actor()
+    lives.set_text("Lives: 3")
+    lives.set_font_size(FONT_SIZE)
+    lives.set_color(WHITE)
+    lives.set_position(Coordinate(CELL_SIZE, CELL_SIZE))
+    cast.add_actor("banners", lives)
     
     
     x = int(MAX_X / 2)
-    y = int(MAX_Y - 2)
+    y = int(MAX_Y / 2)
     position = Coordinate(x, y)
 
     player = Player()
@@ -53,6 +61,7 @@ def main():
     player.set_color(WHITE)
     player.set_position(position)
     cast.add_actor("player", player)
+
 
 
     ## setup the start screen

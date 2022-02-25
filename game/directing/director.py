@@ -1,7 +1,6 @@
 from game.casting.cast import Cast
 from game.shared.coordinate import Coordinate
 
-
 class Director:
     """A person who directs the game. 
     
@@ -97,11 +96,11 @@ class Director:
             gem.falling(max_x, max_y)
             if player.get_position().collide(gem.get_position()):
                 self.score += gem.getScore()
-                scoreBanner.set_text(f"Score: {self.score}")
                 cast.remove_actor("gems", gem)
             
         self._spawner.spawn_object(cast)
 
+        scoreBanner.set_text(f"Score: {self.score}")
         livesBanner.set_text(f"Lives: {player.decrease_lives(0)}")
         
     def _do_outputs(self, cast:Cast):

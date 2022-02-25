@@ -4,7 +4,7 @@ class FallingObject(Actor):
 
     def __init__(self):
         super().__init__()
-        self.set_velocity(Coordinate(0,-1))
+        self.set_velocity(Coordinate(0,1))
         
     def falling(self, max_x, max_y):
         """Moves the actor to its next position according to its velocity. Will wrap the position 

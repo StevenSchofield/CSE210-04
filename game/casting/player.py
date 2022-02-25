@@ -16,6 +16,6 @@ class Player(Actor):
 
     def decrease_lives(self, decrease = 1):
 
-        self.lives -= decrease
+        self._lives -= decrease
         return self._lives
 

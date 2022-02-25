@@ -43,6 +43,19 @@ class Coordinate:
         """
         return self._x == other.get_x() and self._y == other.get_y()
 
+    def collide(self, other, cell_size=15):
+        """Defines box collision with other points
+
+        Args: 
+            other (Point): The Point to compare
+            cell_size (int): The size of each icon
+        
+        Returns:
+            boolean: True if either cell overlaps with the other
+        """
+        self_in_other = self._x == other.get_x() and self._y >= other.get_y() and self._y <= other.get_y() + cell_size
+        other_in_self = other.get_x() == self._x and other.get_y() >= self._y and other.get_y() <= self._y + cell_size
+        return self_in_other or other_in_self
     def get_x(self):
         """Gets the horizontal distance.
         

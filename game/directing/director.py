@@ -61,7 +61,8 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
-        scoreBanner = cast.get_first_actor("banners")
+        scoreBanner = cast.get_actors("banners")[0]
+        livesBanner = cast.get_actors("banners")[1]
         gems = cast.get_actors("gems")
         rocks = cast.get_actors("rocks")
         player = cast.get_first_actor("player")
@@ -69,21 +70,17 @@ class Director:
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         player.move_next(max_x, max_y)
-        """
-        for artifact in artifacts:
-                message = artifact.get_message()
-                scoreBanner.set_text(message)"""
         
         # Rock and gem movement/collision
         for rock in rocks:
             rock.falling(max_x, max_y)
-            if player.get_position().equals(rock.get_position()):
-                player.decrease_lives()
+            if player.get_position().collide(rock.get_position()):
+                livesBanner.set_text(f"Lives: {player.decrease_lives()}")
                 cast.remove_actor("rocks", rock)
 
         for gem in gems:
             gem.falling(max_x, max_y)
-            if player.get_position().equals(gem.get_position()):
+            if player.get_position().collide(gem.get_position()):
                 self.score += gem.getScore()
                 scoreBanner.set_text(f"Score: {self.score}")
                 cast.remove_actor("gems", gem)

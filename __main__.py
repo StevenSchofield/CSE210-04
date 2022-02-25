@@ -102,7 +102,7 @@ def main():
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
-    spawner = Spawner(COLS, ROWS, SPAWN_RATE)
+    spawner = Spawner(COLS, ROWS, CELL_SIZE, SPAWN_RATE)
     director = Director(keyboard_service, video_service, spawner)
     director.start_game(cast, startScreenCast)
 

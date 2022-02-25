@@ -82,4 +82,4 @@ class Coordinate:
         Returns:
             Point: A new Point that is scaled.
         """
-        return Coordinate(self._x * factor, self._y * factor)
+        return Coordinate(self._x * factor, self._y)

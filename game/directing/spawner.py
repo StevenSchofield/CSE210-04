@@ -39,9 +39,9 @@ class Spawner:
         if spawn > 75:
             rock = Rocks()
             rock.set_position(position)
-            cast.add_actor("rock", rock)
+            cast.add_actor("rocks", rock)
         elif spawn > 50:
             gem = Gems()
             gem.set_color(COLORS[random.randint(0, len(COLORS)-1)])
             gem.set_position(position)
-            cast.add_actor("gem", gem)
+            cast.add_actor("gems", gem)

@@ -1,4 +1,5 @@
 from game.casting.cast import Cast
+from game.shared.coordinate import Coordinate
 
 
 class Director:
@@ -69,6 +70,7 @@ class Director:
 
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
+        player.set_velocity(Coordinate(player.get_velocity().get_x(), player.get_velocity().get_y()*3))
         player.move_next(max_x, max_y)
         
         # Rock and gem movement/collision

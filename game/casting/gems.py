@@ -1,4 +1,6 @@
 from game.casting.fallingObject import FallingObject
+""""The Gems class will inherit from falling objects 
+    and will be worth a score of 5"""
 class Gems(FallingObject):
     def __init__(self, score=5):
         super().__init__()

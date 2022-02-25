@@ -77,13 +77,13 @@ class Director:
         # Rock and gem movement/collision
         for rock in rocks:
             rock.falling(max_x, max_y)
-            if player.get_position().equals(rock.get_position()):
+            if player.get_position().collide(rock.get_position()):
                 player.decrease_lives()
                 cast.remove_actor("rocks", rock)
 
         for gem in gems:
             gem.falling(max_x, max_y)
-            if player.get_position().equals(gem.get_position()):
+            if player.get_position().collide(gem.get_position()):
                 self.score += gem.getScore()
                 scoreBanner.set_text(f"Score: {self.score}")
                 cast.remove_actor("gems", gem)

@@ -111,6 +111,5 @@ def main():
     director = Director(keyboard_service, video_service, spawner)
     director.start_game(cast, startScreenCast, endScreenCast)
 
-
 if __name__ == "__main__":
     main()

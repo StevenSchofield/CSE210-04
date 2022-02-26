@@ -8,3 +8,9 @@ long as the player still has lives.
 The Rocks will make the players lose a life.
 The Gems will make the player gain score.
 The player starts with 3 lives.
+
+Team members:
+- Angel Gonzalez
+- Christopher Monk
+- Nathan Wood
+- Steven Schofield

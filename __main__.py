@@ -1,6 +1,3 @@
-import os
-import random
-
 from game.casting.actor import Actor
 from game.casting.player import Player
 from game.casting.cast import Cast
